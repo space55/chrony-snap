@@ -4,7 +4,7 @@ summary: Chrony Time Daemon
 description: |
   chrony is a versatile implementation of the Network Time Protocol (NTP). It can synchronise the system clock with NTP servers, reference clocks (e.g. GPS receiver), and manual input using wristwatch and keyboard. It can also operate as an NTPv4 (RFC 5905) server and peer to provide a time service to other computers in the network.
 
-confinement: devmode
+confinement: strict
 base: core20
 grade: devel
 architectures:
@@ -24,13 +24,24 @@ parts:
       - make
       - libcap-dev
       - libseccomp-dev
+  chrony-conf:
+    plugin: dump
+    source: .
+    source-type: local
+    organize:
+      chrony.conf: /etc/chrony.conf
+    stage:
+      - etc/chrony.conf
 
 apps:
   chronyd:
-    command: usr/local/sbin/chronyd
+    command: usr/local/sbin/chronyd -d -f $SNAP_COMMON/etc/chrony.conf
+    plugs:
+      - time-control
+    daemon: simple
   chronyc:
     command: usr/local/bin/chronyc
 
 layout:
   /etc/chrony.conf:
-    symlink: $SNAP_DATA/etc/chrony.conf
+    bind-file: $SNAP_COMMON/etc/chrony.conf
