@@ -35,7 +35,7 @@ parts:
 
 apps:
   chronyd:
-    command: usr/local/sbin/chronyd -d -Q -f $SNAP_COMMON/etc/chrony.conf
+    command: usr/local/sbin/chronyd -d -f $SNAP_COMMON/etc/chrony.conf
     plugs:
       - time-control
     daemon: simple
