@@ -31,6 +31,6 @@ apps:
   chronyc:
     command: usr/local/bin/chronyc
 
-layouts:
+layout:
   /etc/chrony.conf:
     bind-file: $SNAP_DATA/etc/chrony.conf
