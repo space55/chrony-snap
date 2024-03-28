@@ -1,4 +1,4 @@
-name: chrony-snapd
+name: chrony
 version: '4.5'
 summary: Chrony Time Daemon
 description: |
@@ -16,7 +16,7 @@ architectures:
   - build-on: i386
 
 parts:
-  chrony-snapd:
+  chronyd:
     plugin: autotools
     source: https://chrony-project.org/releases/chrony-$SNAPCRAFT_PROJECT_VERSION.tar.gz
     build-packages:
