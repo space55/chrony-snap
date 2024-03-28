@@ -35,7 +35,7 @@ parts:
 
 apps:
   chronyd:
-    command: usr/local/sbin/chronyd -d -f $SNAP_COMMON/etc/chrony.conf
+    command: usr/local/sbin/chronyd -d -f $SNAP_COMMON/etc/chrony.conf pidfile /snap/snap.chrony-snapd/chronyd.pid
     plugs:
       - time-control
       - network-bind
