@@ -1,0 +1,4 @@
+#!/bin/sh -e
+
+# Create a default config file
+cp $SNAP/chrony.conf $SNAP_COMMON/chrony.conf

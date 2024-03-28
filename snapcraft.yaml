@@ -26,24 +26,32 @@ parts:
       - libseccomp-dev
   chrony-conf:
     plugin: dump
-    source: .
+    source: config/
     source-type: local
-    organize:
-      chrony.conf: /etc/chrony.conf
     stage:
-      - etc/chrony.conf
+      - chrony.conf
+  chrony-scripts:
+    plugin: dump
+    source: bin
+    source-type: local
+    stage:
+      - chrony-service.sh
 
 apps:
   chronyd:
-    command: usr/local/sbin/chronyd -d -f $SNAP_COMMON/etc/chrony.conf 
+    command: usr/local/sbin/chronyd
     plugs:
       - time-control
       - network-bind
+  chrony-service:
+    command: chrony-service.sh
     daemon: simple
+    plugs:
+      - time-control
+      - network-bind
   chronyc:
     command: usr/local/bin/chronyc
 
 layout:
   /etc/chrony.conf:
-    bind-file: $SNAP_COMMON/etc/chrony.conf
-
+    symlink: $SNAP_COMMON/chrony.conf
