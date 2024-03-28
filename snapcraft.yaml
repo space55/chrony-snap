@@ -1,0 +1,33 @@
+name: chrony-snapd
+version: '4.5'
+summary: Chrony Time Daemon
+description: |
+  chrony is a versatile implementation of the Network Time Protocol (NTP). It can synchronise the system clock with NTP servers, reference clocks (e.g. GPS receiver), and manual input using wristwatch and keyboard. It can also operate as an NTPv4 (RFC 5905) server and peer to provide a time service to other computers in the network.
+
+confinement: devmode
+base: core20
+grade: devel
+architectures:
+  - build-on: s390x
+  - build-on: ppc64el
+  - build-on: arm64
+  - build-on: armhf
+  - build-on: amd64
+  - build-on: i386
+
+parts:
+  chrony-snapd:
+    plugin: autotools
+    source: https://chrony-project.org/releases/chrony-$SNAPCRAFT_PROJECT_VERSION.tar.gz
+    build-packages:
+      - g++
+      - make
+      - libcap-dev
+      - libseccomp-dev
+
+apps:
+  chronyd:
+    command: usr/local/sbin/chronyd
+  chronyc:
+    command: usr/local/bin/chronyc
+
