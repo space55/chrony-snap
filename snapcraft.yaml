@@ -45,3 +45,5 @@ apps:
 layout:
   /etc/chrony.conf:
     bind-file: $SNAP_COMMON/etc/chrony.conf
+  /var/run/chrony:
+    type: tmpfs
