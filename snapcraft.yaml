@@ -33,4 +33,4 @@ apps:
 
 layout:
   /etc/chrony.conf:
-    bind-file: $SNAP_DATA/etc/chrony.conf
+    symlink: $SNAP_DATA/etc/chrony.conf
