@@ -38,6 +38,7 @@ apps:
     command: usr/local/sbin/chronyd -d -f $SNAP_COMMON/etc/chrony.conf
     plugs:
       - time-control
+      - network-bind
     daemon: simple
   chronyc:
     command: usr/local/bin/chronyc
@@ -45,5 +46,4 @@ apps:
 layout:
   /etc/chrony.conf:
     bind-file: $SNAP_COMMON/etc/chrony.conf
-  /var/run/chrony:
-    type: tmpfs
+
