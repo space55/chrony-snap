@@ -4,6 +4,7 @@ mkdir -p $SNAP_COMMON
 
 if ! test -f $SNAP_COMMON
 then
+	echo "Installing default configuration file"
 	# Create a default config file
 	cp $SNAP/chrony.conf $SNAP_COMMON/chrony.conf
 fi
