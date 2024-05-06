@@ -24,6 +24,7 @@ parts:
       - make
       - libcap-dev
       - libseccomp-dev
+      - pps-tools
   chrony-conf:
     plugin: dump
     source: config/
